@@ -69,7 +69,7 @@ export class Services{
         }
     }
 
-    async getAllPost(queries = [Query.equal("status","active")]){              // List All those which are Active.
+    async getAllPost(queries = [Query.equal("status","Active")]){              // List All those which are Active.
         try {
             return await this.databases.listDocuments(
                 config.appwriteDatabaseId,
@@ -107,7 +107,7 @@ export class Services{
         }
     }
 
-    getFilePreview(fileId){
+    async getFilePreview(fileId){
         return this.bucket.getFilePreview(
             config.appwriteBucketId,
             fileId

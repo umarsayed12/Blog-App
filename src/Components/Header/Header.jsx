@@ -13,7 +13,7 @@ const Header = () => {
     },
     {
       name: "All Posts",
-      slug: "/allPosts",
+      slug: "/all-posts",
       isActive: authStatus,
     },
     {
@@ -22,13 +22,13 @@ const Header = () => {
       isActive: !authStatus,
     },
     {
-      name: "Register",
-      slug: "/register",
+      name: "Sign Up",
+      slug: "/signup",
       isActive: !authStatus,
     },
     {
       name: "Add Post",
-      slug: "/addPost",
+      slug: "/add-Post",
       isActive: authStatus,
     },
   ];
