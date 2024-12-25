@@ -11,11 +11,11 @@ export class Authentication {
 
     }
 
-    async register({email,password,username}){
+    async createAccount({email,password,username}){
         try {
             const newAccount = await this.account.create(ID.unique(),email,password,username)
             if(newAccount){
-                this.login({email,password})
+                return this.login({email,password})
             }
             else{
                 return newAccount;
@@ -29,7 +29,7 @@ export class Authentication {
         try {
             return await this.account.createEmailPasswordSession(email,password)
         } catch (error) {
-            throw error;
+            console.log("Login Error!")
         }
     }
 
@@ -37,9 +37,8 @@ export class Authentication {
         try {
             return await this.account.get()
         } catch (error) {
-            throw error;
+            console.log("Appwrite service :: getCurrentUser :: error", error);
         }
-
         return null;
     }
 

@@ -10,13 +10,13 @@ function SignUp() {
   const dispatch = useDispatch();
   const [error, setError] = useState("");
   const { register, handleSubmit } = useForm();
-  const create = async (data) => {
+  const RegisterAccount = async (data) => {
     setError("");
     try {
-      const userData = await authenticationService.register(data);
+      const userData = await authenticationService.createAccount(data);
       if (userData) {
-        const userData = await authenticationService.getCurrentUser();
-        if (userData) dispatch(storeLogin(userData));
+        const currUserData = await authenticationService.getCurrentUser();
+        if (currUserData) dispatch(storeLogin(currUserData));
         navigate("/");
       }
     } catch (error) {
@@ -43,17 +43,17 @@ function SignUp() {
             to="/login"
             className="font-medium text-primary transition-all duration-200 hover:underline"
           >
-            Sign In
+            Log In
           </Link>
         </p>
         {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
 
-        <form onSubmit={handleSubmit(create)}>
+        <form onSubmit={handleSubmit(RegisterAccount)}>
           <div className="space-y-5">
             <Input
               label="Full Name: "
               placeholder="Enter your Full Name..."
-              {...register("name", {
+              {...register("username", {
                 required: true,
               })}
             />

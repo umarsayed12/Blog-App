@@ -33,18 +33,19 @@ function PostForm({ post }) {
         navigate(`/post/${dbPost.$id}`);
       }
     } else {
-      const file = (await data.image[0])
-        ? services.uploadFile(data.image[0])
+      const file = data.image[0]
+        ? await services.uploadFile(data.image[0])
         : null;
       if (file) {
         const fileId = file.$id;
+        console.log(fileId);
         data.featuredImage = fileId;
         const dbPost = await services.createPost({
           ...data,
           userId: userData.$id,
         });
         if (dbPost) {
-          navigate(`'/post/${dbPost.$id}`);
+          navigate(`/post/${dbPost.$id}`);
         }
       }
     }
@@ -52,10 +53,7 @@ function PostForm({ post }) {
 
   const slugTransform = useCallback((value) => {
     if (value && typeof value === "string") {
-      return value
-        .trim()
-        .toLowerCase()
-        .replace(/^[a-zA-Z\d]+/g, "-");
+      return value.trim().toLowerCase().replace(/\s+/g, "-");
       return "";
     }
   });

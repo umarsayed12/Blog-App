@@ -10,17 +10,17 @@ function HomePage() {
         setPosts(posts.documents);
       }
     });
-  });
+  }, []);
   if (allPosts.length !== 0)
     return (
       <div className="w-full py-8">
         <Container>
           <div className="flex flex-wrap">
-            {allPosts.map((post) => {
+            {allPosts.map((post) => (
               <div key={post.$id} className="p-2 w-1/4">
-                <PostCard post={post} />
-              </div>;
-            })}
+                <PostCard {...post} />
+              </div>
+            ))}
           </div>
         </Container>
       </div>
@@ -31,7 +31,7 @@ function HomePage() {
         <div className="flex flex-wrap">
           <div className="p-2 w-full">
             <h1 className="text-2xl font-bold hover:text-grap-500">
-              You are not Logged In! Please Login to see Posts.
+              No Posts Here!
             </h1>
           </div>
         </div>

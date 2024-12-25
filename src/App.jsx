@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import authenticationService from "./appwrite/auth";
 import { login, logout } from "./store/authSlice";
 import { Header, Footer } from "./Components";
+import { Outlet } from "react-router-dom";
 function App() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
@@ -25,13 +26,13 @@ function App() {
     <>
       <div>
         <Header />
+        <Outlet />
         <Footer />
       </div>
-      <h1>LoggedIn Successfully!</h1>
     </>
   ) : (
     <>
-      <h1>You Must Login to Continue!</h1>
+      <h1>Loading...</h1>
     </>
   );
 }

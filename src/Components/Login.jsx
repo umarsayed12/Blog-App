@@ -4,14 +4,13 @@ import { Button, Input, Logo } from "./index";
 import { useDispatch } from "react-redux";
 import authenticationService from "../appwrite/auth";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
   const [error, setError] = useState("");
   const login = async (data) => {
-    console.log(data);
     setError("");
     try {
       const session = await authenticationService.login(data);

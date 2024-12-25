@@ -7,18 +7,22 @@ import { useSelector } from "react-redux";
 
 function PostPage() {
   const [post, setPost] = useState(null);
+  const [featuredImage, setFeaturedImage] = useState(null);
   const { slug } = useParams();
   const navigate = useNavigate();
 
   const userData = useSelector((state) => state.auth.userData);
-
   const isAuthor = post && (userData ? post.userId === userData.$id : false);
 
   useEffect(() => {
     if (slug) {
       services.getPost(slug).then((post) => {
-        if (post) setPost(post);
-        else navigate("/");
+        if (post) {
+          services.getFilePreview(post.featuredImage).then((image) => {
+            setFeaturedImage(image);
+          });
+          setPost(post);
+        } else navigate("/");
       });
     } else navigate("/");
   }, [slug, navigate]);
@@ -31,16 +35,11 @@ function PostPage() {
       }
     });
   };
-
   return post ? (
     <div className="py-8">
       <Container>
         <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
-          <img
-            src={services.getFilePreview(post.featuredImage)}
-            alt={post.title}
-            className="rounded-xl"
-          />
+          <img src={featuredImage} alt={post.title} className="rounded-xl" />
 
           {isAuthor && (
             <div className="absolute right-6 top-6">
