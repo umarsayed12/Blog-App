@@ -5,12 +5,15 @@ import { login as storeLogin } from "../store/authSlice";
 import { Button, Input, Logo } from "./index";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
+import { Button as MatButton } from "@material-tailwind/react";
 function SignUp() {
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [error, setError] = useState("");
   const { register, handleSubmit } = useForm();
   const RegisterAccount = async (data) => {
+    setLoading(true);
     setError("");
     try {
       const userData = await authenticationService.createAccount(data);
@@ -29,11 +32,6 @@ function SignUp() {
       <div
         className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}
       >
-        <div className="mb-2 flex justify-center">
-          <span className="inline-block w-full max-w-[100px]">
-            <Logo width="100%" />
-          </span>
-        </div>
         <h2 className="text-center text-2xl font-bold leading-tight">
           Sign up to create account
         </h2>
@@ -41,7 +39,7 @@ function SignUp() {
           Already have an account?&nbsp;
           <Link
             to="/login"
-            className="font-medium text-primary transition-all duration-200 hover:underline"
+            className="font-medium text-[#1d4ed8] text-primary transition-all duration-200 hover:underline"
           >
             Log In
           </Link>
@@ -83,9 +81,16 @@ function SignUp() {
                 },
               })}
             />
-            <Button type="submit" className="w-full">
-              Register
-            </Button>
+            {!loading && (
+              <Button type="submit" className="w-full">
+                Register
+              </Button>
+            )}
+            {loading && (
+              <MatButton className="w-full flex justify-center" loading={true}>
+                Loading
+              </MatButton>
+            )}
           </div>
         </form>
       </div>

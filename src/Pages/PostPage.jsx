@@ -4,6 +4,7 @@ import services from "../appwrite/database";
 import { Button, Container } from "../Components";
 import parse from "html-react-parser";
 import { useSelector } from "react-redux";
+import { Typography } from "@material-tailwind/react";
 
 function PostPage() {
   const [post, setPost] = useState(null);
@@ -25,7 +26,7 @@ function PostPage() {
         } else navigate("/");
       });
     } else navigate("/");
-  }, [slug, navigate]);
+  }, [slug, navigate, post]);
 
   const deletePost = () => {
     services.deletePost(post.$id).then((status) => {
@@ -36,9 +37,9 @@ function PostPage() {
     });
   };
   return post ? (
-    <div className="py-8">
+    <div className="py-8 h-screen">
       <Container>
-        <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
+        <div className="relative mx-auto max-w-screen-md">
           <img src={featuredImage} alt={post.title} className="rounded-xl" />
 
           {isAuthor && (
@@ -55,9 +56,17 @@ function PostPage() {
           )}
         </div>
         <div className="w-full mb-6">
-          <h1 className="text-2xl font-bold">{post.title}</h1>
+          <Typography
+            variant="h2"
+            color="blue-gray"
+            className="my-4 font-black text-4xl !leading-snug"
+          >
+            {post.title}
+          </Typography>
         </div>
-        <div className="browser-css">{parse(post.content)}</div>
+        <Typography className="font-normal !text-gray-700">
+          <div className="browser-css">{parse(post.content)}</div>
+        </Typography>
       </Container>
     </div>
   ) : null;

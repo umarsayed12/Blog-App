@@ -32,7 +32,6 @@ export class Authentication {
             console.log("Login Error!")
         }
     }
-
     async getCurrentUser(){
         try {
             return await this.account.get()

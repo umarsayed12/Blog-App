@@ -5,7 +5,7 @@ const Button = (
     children,
     type = "button",
     textColor = "text-white",
-    bgColor = "bg-violet-600",
+    bgColor = "bg-[#1d4ed8]",
     className = "",
     ...props
   },

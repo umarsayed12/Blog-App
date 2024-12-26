@@ -4,7 +4,7 @@ import { Button, Input, Select, RTE } from "../index";
 import services from "../../appwrite/database";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-
+import { ID } from "appwrite";
 function PostForm({ post }) {
   const { register, handleSubmit, watch, setValue, control, getValues } =
     useForm({
@@ -19,8 +19,8 @@ function PostForm({ post }) {
   const userData = useSelector((state) => state.auth.userData);
   const submit = async (data) => {
     if (post) {
-      const file = (await data.image[0])
-        ? services.uploadFile(data.image[0])
+      const file = data.image[0]
+        ? await services.uploadFile(data.image[0])
         : null;
       if (file) {
         services.deleteFile(post.featuredImage);
@@ -38,11 +38,11 @@ function PostForm({ post }) {
         : null;
       if (file) {
         const fileId = file.$id;
-        console.log(fileId);
         data.featuredImage = fileId;
         const dbPost = await services.createPost({
           ...data,
           userId: userData.$id,
+          username: userData.name,
         });
         if (dbPost) {
           navigate(`/post/${dbPost.$id}`);

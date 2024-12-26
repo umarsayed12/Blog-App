@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 import { Provider } from "react-redux";
+import { ThemeProvider } from "@material-tailwind/react";
 import store from "./store/store.js";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { AuthLayout } from "./Components";
@@ -13,6 +14,7 @@ import EditPosts from "./Pages/EditPosts";
 import AllPosts from "./Pages/AllPosts";
 import AddPost from "./Pages/AddPost";
 import PostPage from "./Pages/PostPage";
+import MyPosts from "./Pages/MyPosts";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +58,14 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "/my-posts",
+        element: (
+          <AuthLayout authentication={true}>
+            <MyPosts />
+          </AuthLayout>
+        ),
+      },
+      {
         path: "/edit-post/:slug",
         element: (
           <AuthLayout>
@@ -76,8 +86,10 @@ const router = createBrowserRouter([
 ]);
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
+    <ThemeProvider>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    </ThemeProvider>
   </StrictMode>
 );

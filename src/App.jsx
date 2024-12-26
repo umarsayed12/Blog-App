@@ -4,6 +4,7 @@ import authenticationService from "./appwrite/auth";
 import { login, logout } from "./store/authSlice";
 import { Header, Footer } from "./Components";
 import { Outlet } from "react-router-dom";
+import { Loader } from "./Components";
 function App() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ function App() {
 
   return !loading ? (
     <>
-      <div>
+      <div className="h-screen flex flex-col justify-between">
         <Header />
         <Outlet />
         <Footer />
@@ -32,7 +33,9 @@ function App() {
     </>
   ) : (
     <>
-      <h1>Loading...</h1>
+      <h1>
+        <Loader />
+      </h1>
     </>
   );
 }

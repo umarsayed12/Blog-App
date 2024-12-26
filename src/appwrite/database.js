@@ -14,14 +14,14 @@ export class Services{
 
     // Handle Post Services
 
-    async createPost({title, slug, content, featuredImage, status, userId}){
+    async createPost({title, slug, content, featuredImage, status, userId, username}){
         try {
             return await this.databases.createDocument(
                 config.appwriteDatabaseId,
                 config.appwriteCollectionId,
                 slug,
                 {
-                    title, content, featuredImage, status, userId,
+                    title, content, featuredImage, status, userId,username
                 }
             )
         } catch (error) {
