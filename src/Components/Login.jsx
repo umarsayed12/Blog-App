@@ -21,11 +21,11 @@ function Login() {
         const userData = await authenticationService.getCurrentUser();
         if (userData) {
           dispatch(storeLogin(userData));
+          navigate("/");
         } else {
           setLoading(false);
           setError("Invalid Credentials. Please try again!");
         }
-        navigate("/");
       } else {
         setLoading(false);
         setError("Invalid Credentials. Please try again!");
