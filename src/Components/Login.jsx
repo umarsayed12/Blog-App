@@ -25,7 +25,7 @@ function Login() {
         navigate("/");
       } else {
         setLoading(false);
-        setError("Invalid Credentials!");
+        setError("Invalid Credentials. Please try again!");
       }
     } catch (error) {
       setLoading(false);
