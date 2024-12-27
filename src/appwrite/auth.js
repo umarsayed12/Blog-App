@@ -29,7 +29,7 @@ export class Authentication {
         try {
             return await this.account.createEmailPasswordSession(email,password)
         } catch (error) {
-            console.log("Login Error!")
+            return error
         }
     }
     async getCurrentUser(){
