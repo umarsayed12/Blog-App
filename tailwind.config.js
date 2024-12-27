@@ -1,7 +1,11 @@
 /** @type {import('tailwindcss').Config} */
-const withMT = require("@material-tailwind/react/utils/withMT");
+import withMT from "@material-tailwind/react/utils/withMT";
+
 export default withMT({
-  content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}", // Adjust the path as per your project structure
+    "./node_modules/@material-tailwind/react/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {
       fontFamily: {
@@ -11,4 +15,7 @@ export default withMT({
   },
   plugins: [],
 });
+
+
+
 
