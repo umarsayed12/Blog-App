@@ -11,7 +11,11 @@ function SignUp() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [error, setError] = useState("");
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const RegisterAccount = async (data) => {
     setLoading(true);
     setError("");
@@ -23,6 +27,7 @@ function SignUp() {
         navigate("/");
       }
     } catch (error) {
+      setLoading(false);
       setError(error.message);
     }
   };
@@ -44,17 +49,23 @@ function SignUp() {
             Log In
           </Link>
         </p>
-        {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
+        {error && (
+          <p className="text-red-600 mt-8 text-center">{error.message}</p>
+        )}
 
         <form onSubmit={handleSubmit(RegisterAccount)}>
           <div className="space-y-5">
             <Input
               label="Full Name: "
               placeholder="Enter your Full Name..."
+              required
               {...register("username", {
                 required: true,
               })}
             />
+            {errors.username && (
+              <p className="text-red-800">{errors.username.message}</p>
+            )}
             <Input
               label="Email: "
               placeholder="Enter your Email..."
@@ -68,6 +79,9 @@ function SignUp() {
                 },
               })}
             />
+            {errors.email && (
+              <p className="text-red-800">{errors.email.message}</p>
+            )}
             <Input
               label="Password: "
               type="password"
@@ -76,11 +90,14 @@ function SignUp() {
                 required: true,
                 validate: {
                   matchPattern: (value) =>
-                    /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(value) ||
+                    /^(?=.*[A-Za-z])(?=.*\d).{8,}$/.test(value) ||
                     "Password must be at least 8 characters long and include at least one letter and one number",
                 },
               })}
             />
+            {errors.password && (
+              <p className="text-red-800">{errors.password.message}</p>
+            )}
             {!loading && (
               <Button type="submit" className="w-full">
                 Register

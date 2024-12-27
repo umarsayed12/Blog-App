@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Container, PostCard } from "../Components";
+import { Button, Container, Loader, PostCard } from "../Components";
 import services from "../appwrite/database";
 import { Typography } from "@material-tailwind/react";
 import { useSelector } from "react-redux";
@@ -7,15 +7,20 @@ import { useNavigate } from "react-router-dom";
 function MyPosts() {
   const [posts, setPosts] = useState([]);
   const userData = useSelector((state) => state.auth.userData);
+  console.log(userData);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
+    setLoading(true);
     services.getAllPost().then((posts) => {
       if (posts) {
         setPosts(posts.documents);
+        setLoading(false);
       }
     });
   }, []);
-  const myposts = posts.filter((post) => post.userId === userData.$id);
+  if (loading) return <Loader />;
+  const myposts = posts?.filter((post) => post.userId === userData?.$id);
   if (myposts.length)
     return (
       <div className="py-8 h-full">
@@ -36,9 +41,9 @@ function MyPosts() {
     );
   else
     return (
-      <div className="flex justify-center items-center gap-2">
-        <Typography className="text-2xl">
-          You haven't posted anything yet. Write your First Blog here
+      <div className="flex flex-col flex-wrap justify-center items-center gap-2">
+        <Typography className="text-xl text-center">
+          You haven't posted anything yet. Write your First Blog.
         </Typography>{" "}
         <Button
           className="hover:bg-[#1d58d8]"

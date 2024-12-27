@@ -8,7 +8,7 @@ function PostCard({ $id, title, featuredImage, username }) {
     services.getFilePreview(featuredImage).then((img) => {
       setImage(img);
     });
-  }, [image]); // Fix dependency array to avoid re-triggering unnecessarily.
+  }, [image]);
 
   return (
     <Link to={`/post/${$id}`}>
