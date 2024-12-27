@@ -23,6 +23,9 @@ function Login() {
           dispatch(storeLogin(userData));
         }
         navigate("/");
+      } else {
+        setLoading(false);
+        setError("Invalid Credentials!");
       }
     } catch (error) {
       setLoading(false);
