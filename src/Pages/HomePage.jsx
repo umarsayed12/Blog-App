@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 function HomePage() {
   const authStatus = useSelector((state) => state.auth.status);
+  const userData = useSelector((state) => state.user.userData);
   const navigate = useNavigate();
   const nav = [
     {
@@ -21,7 +22,7 @@ function HomePage() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center lg:pt-32">
       <p className="mx-auto -mt-4 max-w-2xl text-3xl tracking-tight text-slate-700 sm:mt-6">
-        Welcome to{" "}
+        Welcome, {userData?.name} to{" "}
         <span className="border-b font-righteous border-dotted text-yellow-800/90 border-slate-300">
           Enlighten.
         </span>
