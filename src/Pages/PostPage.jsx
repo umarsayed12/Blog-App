@@ -37,13 +37,13 @@ function PostPage() {
     });
   };
   return post ? (
-    <div className="py-8 h-screen">
+    <div className="py-8 h-screen overflow-y-scroll">
       <Container>
         <div className="relative mx-auto max-w-screen-md">
           <img src={featuredImage} alt={post.title} className="rounded-xl" />
 
           {isAuthor && (
-            <div className="absolute right-6 top-6">
+            <div className="absolute right-12 top-6">
               <Link to={`/edit-post/${post.$id}`}>
                 <Button bgColor="bg-green-500" className="mr-3">
                   Edit

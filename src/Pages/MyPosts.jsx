@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 function MyPosts() {
   const [posts, setPosts] = useState([]);
   const userData = useSelector((state) => state.auth.userData);
-  console.log(userData);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
