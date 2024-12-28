@@ -12,7 +12,7 @@ function AllPosts() {
     });
   }, []);
   return (
-    <div className="py-8 h-full overflow-y-scroll">
+    <div className="py-8 h-screen overflow-y-scroll">
       <Container>
         <Typography className="text-4xl text-center p-4 border-y-2 mb-5 bg-black text-white rounded-md">
           All Posts
