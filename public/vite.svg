@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
-  <!-- Background Circle -->
-  <circle cx="100" cy="100" r="100" fill="linear-gradient(to right, #7b5fe9, #a0e9e5)" />
-
-  <!-- CS Text -->
-  <text x="48%" y="68%" text-anchor="middle" font-family="cursive" font-size="110" fill="#ffffff" style="font-style: italic;">
-    CS
-  </text>
-</svg>
