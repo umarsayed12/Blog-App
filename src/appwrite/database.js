@@ -65,7 +65,7 @@ export class Services{
                 slug
             )
         } catch (error) {
-            throw error
+            console.log("File not found!")
         }
     }
 

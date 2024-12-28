@@ -23,8 +23,10 @@ function SignUp() {
       const userData = await authenticationService.createAccount(data);
       if (userData) {
         const currUserData = await authenticationService.getCurrentUser();
-        if (currUserData) dispatch(storeLogin(currUserData));
-        navigate("/");
+        if (currUserData) {
+          dispatch(storeLogin({ userData: currUserData }));
+          navigate("/");
+        }
       }
     } catch (error) {
       setLoading(false);

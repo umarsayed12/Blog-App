@@ -2,12 +2,12 @@ import { Button } from "@material-tailwind/react";
 import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { Loader } from "../Components";
 
 function HomePage() {
   const authStatus = useSelector((state) => state.auth.status);
   const userData = useSelector((state) => state.auth.userData);
   const navigate = useNavigate();
-  console.log(userData);
   const nav = [
     {
       name: "See All Posts",

@@ -41,6 +41,7 @@ function PostForm({ post }) {
         ? await services.uploadFile(data.image[0])
         : null;
       if (file) {
+        console.log(userData);
         const fileId = file.$id;
         data.featuredImage = fileId;
         const dbPost = await services.createPost({
@@ -57,9 +58,10 @@ function PostForm({ post }) {
   };
 
   useEffect(() => {
-    services.getFilePreview(post?.featuredImage).then((img) => {
-      setPrevImage(img);
-    });
+    if (post)
+      services.getFilePreview(post?.featuredImage).then((img) => {
+        setPrevImage(img);
+      });
   }, [prevImage]);
 
   const slugTransform = useCallback((value) => {
