@@ -22,7 +22,7 @@ function MyPosts() {
   const myposts = posts?.filter((post) => post.userId === userData?.$id);
   if (myposts.length)
     return (
-      <div className="py-8 h-full">
+      <div className="py-8 h-screen overflow-y-scroll">
         <Container>
           <Typography className="text-4xl text-center p-4 border-y-2 mb-5 bg-black text-white rounded-md">
             My Posts
