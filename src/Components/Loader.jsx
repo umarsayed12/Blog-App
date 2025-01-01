@@ -6,7 +6,7 @@ function Loader() {
       <Player
         autoplay
         loop
-        src="/public/enlighen data.json" // Replace with the path to your JSON file
+        src="enlighen data.json" // Replace with the path to your JSON file
         className="h-56 w-56 md:h-80 md:w-80" // Tailwind classes for size
       />
     </div>
