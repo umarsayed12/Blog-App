@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { Container, PostCard } from "../Components";
+import { Container, Loader, PostCard } from "../Components";
 import services from "../appwrite/database";
 import { Typography } from "@material-tailwind/react";
 function AllPosts() {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
+    setLoading(true);
     services.getAllPost().then((posts) => {
       if (posts) {
         setPosts(posts.documents);
+        setLoading(false);
       }
     });
   }, []);
+  if (loading) return <Loader />;
   return (
     <div className="py-8 h-screen overflow-y-scroll">
       <Container>
