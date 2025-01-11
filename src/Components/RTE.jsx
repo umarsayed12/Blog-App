@@ -17,6 +17,9 @@ function RTE({ name, control, label, defaultValue = "" }) {
               initialValue: defaultValue,
               height: 500,
               menubar: true,
+              mobile: {
+                menubar: true,
+              },
               plugins: [
                 "advlist",
                 "autolink",
@@ -36,6 +39,7 @@ function RTE({ name, control, label, defaultValue = "" }) {
                 "code",
                 "help",
                 "wordcount",
+                "textcolor",
               ],
               toolbar:
                 "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
