@@ -41,7 +41,6 @@ function PostForm({ post }) {
         ? await services.uploadFile(data.image[0])
         : null;
       if (file) {
-        console.log(userData);
         const fileId = file.$id;
         data.featuredImage = fileId;
         const dbPost = await services.createPost({
